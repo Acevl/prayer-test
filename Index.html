@@ -2,78 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Prayer Times App</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#22C55E">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Prayer Times">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192x192.png">
 </head>
-<body>
-  <!-- Header with menu and countdown -->
-  <div class="bg-green-600 text-white p-6 pb-28 relative">
-    <button class="mb-8">
+<body class="pb-20">
+  <!-- Fixed Header with menu and countdown -->
+  <div class="fixed-header bg-green-600 text-white p-6 w-full z-20">
+    <button class="mb-4">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
     
     <div class="flex items-center justify-between">
-      <div class="text-2xl font-medium">Maghribbbbbbb will begin in</div>
+      <div class="text-2xl font-medium">Maghrib will begin in</div>
       <div class="bg-yellow-400 text-black rounded-full px-3 py-1 font-medium">
         -00:05:23
       </div>
     </div>
   </div>
   
-  <!-- Prayer times today card -->
-  <div class="prayer-card bg-white mx-4 -mt-20 p-6 mb-6 relative z-10">
-    <h2 class="text-green-600 text-center text-lg font-medium mb-4">PRAYER TIMES TODAY</h2>
-    
-    <div class="text-center mb-6">
-      <h3 class="text-2xl font-bold">Sunday, 5 January 2025</h3>
-      <p class="text-gray-600">28 Rabi'ul Awal, 1445 H</p>
-    </div>
-    
-    <div>
-      <!-- Fajr -->
-      <div class="prayer-row flex justify-between">
-        <div class="text-xl text-gray-700 font-medium">Fajr</div>
-        <div class="text-xl">6:36</div>
-      </div>
+  <!-- Main content -->
+  <div class="main-content pt-32">
+    <!-- Prayer times today card -->
+    <div class="prayer-card bg-white mx-4 p-6 mb-6 relative z-10">
+      <h2 class="text-green-600 text-center text-lg font-medium mb-4">PRAYER TIMES TODAY</h2>
       
-      <!-- Zuhr -->
-      <div class="prayer-row flex justify-between">
-        <div class="text-xl text-gray-700 font-medium">Zuhr</div>
-        <div class="text-xl">12:15</div>
-      </div>
-      
-      <!-- Asr (highlighted as current) -->
-      <div class="prayer-row flex justify-between bg-green-50 -mx-6 px-6 rounded-lg">
-        <div class="text-xl text-green-600 font-medium mx-6">Asr</div>
-        <div class="text-xl text-green-600 mx-6">14:30</div>
-      </div>
-      
-      <!-- Maghrib -->
-      <div class="prayer-row flex justify-between">
-        <div class="text-xl text-gray-700 font-medium">Maghrib</div>
-        <div class="text-xl">16:18</div>
-      </div>
-      
-      <!-- Esha -->
-      <div class="prayer-row flex justify-between">
-        <div class="text-xl text-gray-700 font-medium">Esha</div>
-        <div class="text-xl">17:38</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Future prayer times section -->
-  <div class="mx-4 mb-6">
-    <h2 class="text-green-600 text-center text-lg font-medium mb-4">FUTURE PRAYER TIMES</h2>
-    
-    <div class="prayer-card bg-white p-6">
       <div class="text-center mb-6">
-        <h3 class="text-2xl font-bold">Monday, 6 January 2025</h3>
-        <p class="text-gray-600">26 Rabi'ul Awal, 1445 H</p>
+        <h3 class="text-2xl font-bold">Sunday, 5 January 2025</h3>
+        <p class="text-gray-600">28 Rabi'ul Awal, 1445 H</p>
       </div>
       
       <div>
@@ -89,16 +56,16 @@
           <div class="text-xl">12:15</div>
         </div>
         
-        <!-- Asr -->
-        <div class="prayer-row flex justify-between">
-          <div class="text-xl text-gray-700 font-medium">Asr</div>
-          <div class="text-xl">14:30</div>
+        <!-- Asr (highlighted as current) -->
+        <div class="prayer-row flex justify-between is-time bg-green-50 -mx-6 px-6 rounded-lg">
+          <div class="text-xl text-green-600 font-medium">Asr</div>
+          <div class="text-xl text-green-600">14:30</div>
         </div>
         
-        <!-- Maghrib -->
-        <div class="prayer-row flex justify-between">
-          <div class="text-xl text-gray-700 font-medium">Maghrib</div>
-          <div class="text-xl">16:18</div>
+        <!-- Maghrib (also highlighted as active time) -->
+        <div class="prayer-row flex justify-between is-time bg-green-50 -mx-6 px-6 rounded-lg">
+          <div class="text-xl text-green-600 font-medium">Maghrib</div>
+          <div class="text-xl text-green-600">16:18</div>
         </div>
         
         <!-- Esha -->
@@ -108,17 +75,61 @@
         </div>
       </div>
     </div>
-  </div>
-  
-  <!-- Future times button -->
-  <div class="mx-4 mb-24">
-    <button class="w-full bg-green-600 text-white font-medium py-4 rounded-lg text-lg">
-      FUTURE TIMES
-    </button>
+    
+    <!-- Future prayer times section -->
+    <div class="mx-4 mb-6">
+      <h2 class="text-green-600 text-center text-lg font-medium mb-4">FUTURE PRAYER TIMES</h2>
+      
+      <div class="prayer-card bg-white p-6">
+        <div class="text-center mb-6">
+          <h3 class="text-2xl font-bold">Monday, 6 January 2025</h3>
+          <p class="text-gray-600">26 Rabi'ul Awal, 1445 H</p>
+        </div>
+        
+        <div>
+          <!-- Fajr -->
+          <div class="prayer-row flex justify-between">
+            <div class="text-xl text-gray-700 font-medium">Fajr</div>
+            <div class="text-xl">6:36</div>
+          </div>
+          
+          <!-- Zuhr -->
+          <div class="prayer-row flex justify-between">
+            <div class="text-xl text-gray-700 font-medium">Zuhr</div>
+            <div class="text-xl">12:15</div>
+          </div>
+          
+          <!-- Asr -->
+          <div class="prayer-row flex justify-between">
+            <div class="text-xl text-gray-700 font-medium">Asr</div>
+            <div class="text-xl">14:30</div>
+          </div>
+          
+          <!-- Maghrib -->
+          <div class="prayer-row flex justify-between">
+            <div class="text-xl text-gray-700 font-medium">Maghrib</div>
+            <div class="text-xl">16:18</div>
+          </div>
+          
+          <!-- Esha -->
+          <div class="prayer-row flex justify-between">
+            <div class="text-xl text-gray-700 font-medium">Esha</div>
+            <div class="text-xl">17:38</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Future times button -->
+    <div class="mx-4 mb-24">
+      <button class="w-full bg-green-600 text-white font-medium py-4 rounded-lg text-lg">
+        FUTURE TIMES
+      </button>
+    </div>
   </div>
   
   <!-- Bottom navigation -->
-  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3 px-8">
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around py-3 px-8 z-30">
     <div class="bottom-nav-item active">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <circle cx="12" cy="12" r="10" stroke-width="2" />
@@ -135,5 +146,19 @@
       <span class="mt-1 text-sm">Info</span>
     </div>
   </div>
+
+  <!-- PWA Script -->
+  <script>
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+          console.log('ServiceWorker registration successful');
+        }).catch(error => {
+          console.log('ServiceWorker registration failed: ', error);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
